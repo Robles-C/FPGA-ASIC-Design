@@ -1,0 +1,10 @@
+Time resolution is 1 ps
+Note: TEST FAILED LED(0) /= 0 when SW=01
+Time: 20 ns  Iteration: 0  Process: /testbench/test  File: C:/Users/Cristian/Downloads/testbench.vhd
+$finish called at time : 20 ns : File "C:/Users/Cristian/Downloads/testbench.vhd" Line 90
+Note: TEST FAILED LED(0) /= 1 when SW=10
+Time: 30 ns  Iteration: 0  Process: /testbench/test  File: C:/Users/Cristian/Downloads/testbench.vhd
+$finish called at time : 30 ns : File "C:/Users/Cristian/Downloads/testbench.vhd" Line 119
+Note: PASS: logic_ex test PASSED!
+Time: 50 ns  Iteration: 0  Process: /testbench/test  File: C:/Users/Cristian/Downloads/testbench.vhd
+$finish called at time : 50 ns : File "C:/Users/Cristian/Downloads/testbench.vhd" Line 168

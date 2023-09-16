@@ -19,38 +19,37 @@ entity cic is
         q : out std_logic_vector (CO_SIZE - 1 downto 0)); -- output data
 end cic;
 
--- Architecture declaration for the CIC filter
+
 architecture syn of cic is
-    -- array definition for integrator and comb section
+    
     type d_array_type is array (STAGES downto 0) of std_logic_vector(CO_SIZE - 1 downto 0);
-    -- array definition for comb section
     type array_type is array (STAGES downto 1) of std_logic_vector(CO_SIZE - 1 downto 0);
     
     -- Signals used in the filter
-    signal d_fs : d_array_type;  -- used in the integrator section
-    signal d_fsr : d_array_type; -- used in the differentiator (comb) section, at rate r
-    signal m1 : array_type;      -- used in the differentiator (comb) section, at rate r
+    signal d_fs : d_array_type;  -- used in the integrator
+    signal d_fsr : d_array_type; -- used in the differentiator
+    signal m1 : array_type;      -- used in the differentiator
     signal id : std_logic_vector(CO_SIZE - 1 downto 0) := (others => '0'); -- to use for sign-extended version of the input
 begin
     -- output data
-    q <= d_fsr(STAGES);  -- The output is simply the last stage of the differentiator section
+    q <= d_fsr(STAGES);  -- The output is the last stage of the differentiator
     
-    -- input data (d input is sign-extended to 30 bits)
+    -- input data
     id(CO_SIZE - 1 downto CI_SIZE) <= (others => d(CI_SIZE - 1));
     id(CI_SIZE - 1 downto 0) <= d;
 
-    -- integrator section
     process (clk)
+    -- integrator
     begin
         if (clk'event and clk = '1') then
             if (rst = '1') then
-                -- Resetting the integrator states to zero
+                -- resetting states to 0
                 d_fs(0) <= (others => '0');
                 for i in 1 to STAGES loop
                     d_fs(i) <= (others => '0');
                 end loop;
             elsif (ce = '1') then
-                -- Perform the integration
+                -- doing the integration
                 d_fs(0) <= id;
                 for i in 1 to STAGES loop
                     d_fs(i) <= d_fs(i - 1) + d_fs(i);
@@ -59,19 +58,19 @@ begin
         end if;
     end process;
 
-    -- differentiator (comb) section
+    -- differentiator section
     process (clk)
     begin
         if (clk'event and clk = '1') then
             if (rst = '1') then
-                -- Resetting the differentiator states to zero
+                -- Resetting the differentiator to 0
                 d_fsr(0) <= (others => '0');
                 for i in 1 to STAGES loop
                     m1(i) <= (others => '0');
                     d_fsr(i) <= (others => '0');
                 end loop;
             elsif (ce = '1') then
-                -- Perform the differentiation
+                -- doing the differentiation
                 d_fsr(0) <= d_fs(STAGES);
                 if (ce_r = '1') then
                     for i in 1 to STAGES loop
@@ -79,7 +78,6 @@ begin
                         d_fsr(i) <= d_fsr(i - 1) - m1(i);
                     end loop;
                 else
-                    -- Keep the values in m1 and d_fsr arrays unchanged when ce_r = '0'
                     m1 <= m1;
                     for i in 1 to STAGES loop
                         d_fsr(i) <= d_fsr(i);
@@ -88,5 +86,4 @@ begin
             end if;
         end if;
     end process;
-
 end syn;

@@ -9,7 +9,7 @@ entity blender1 is
            a : in std_logic_vector(7 downto 0);
            clk: in std_logic;
            rst: in std_logic;
-           blend : out std_logic_vector(15 downto 0)
+           blend1 : out std_logic_vector(15 downto 0)
            );
 end blender1;
 
@@ -59,7 +59,7 @@ UUT2 : clk_wiz_0
             v0r <= signed(v0);
             v1r <= signed(v1);
             ar <= signed(a);
-            br <= "01111111" - signed(a);
+            br <= "11111111" - signed(a);
             temp2 <= temp1;
         else
             v0r <= v0r;
@@ -74,7 +74,7 @@ UUT2 : clk_wiz_0
             v1r;
     MUX2 <= ar when (SEL = '0') else
             br;
-    blend <= std_logic_vector(temp2);
+    blend1 <= std_logic_vector(temp2);
    
     process(clk_1x, rst)
     begin

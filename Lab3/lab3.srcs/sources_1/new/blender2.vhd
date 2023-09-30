@@ -42,8 +42,11 @@ signal v0_d: std_logic_vector(7 downto 0);
 signal v, temp1, temp2: signed(15 downto 0);
 attribute use_dsp48 : string;
 attribute use_dsp48 of temp1 : signal is "yes";
+constant ClockFrequency : integer := 80e6; -- 100 MHz
+constant ClockPeriod    : time    := 1000 ms / ClockFrequency;
 begin
-  
+
+--clk => NOT clk after ClockPeriod/2;
 UUT1 : clk_wiz_0
    port map ( 
    -- Clock out ports  
@@ -86,13 +89,10 @@ UUT1 : clk_wiz_0
         end if;
     end process;
 
-    MUX1 <= v0r when (SEL = '0') else
-            v1r;
-    MUX2 <= ar when (SEL = '0') else
-            br;
+    MUX1 <= v0r when (SEL = '0') else v1r;
+    MUX2 <= ar when (SEL = '0') else br;
     blend2 <= std_logic_vector(temp2);
    
-    
     process(clk_1x, rst)
     begin
         if(rst = '1') then

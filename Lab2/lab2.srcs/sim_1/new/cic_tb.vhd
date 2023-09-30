@@ -51,7 +51,7 @@ uut: cic port map (clk => clk_tb, ce => ce_tb, ce_r => ce_r_tb, rst => rst_tb, d
         wait;
     end process;
 
-  
+
     process
         file out_file: text open write_mode is "/c/Users/Cristian/ECE524/FPGA-ASIC-Design/lab2/lab2.srcs/sim_1/new/output_8MHz.txt";
         --file out_file: text open write_mode is "/c/Users/Cristian/ECE524/FPGA-ASIC-Design/lab2/lab2.srcs/sim_1/new/output_16MHz.txt";
@@ -83,6 +83,5 @@ uut: cic port map (clk => clk_tb, ce => ce_tb, ce_r => ce_r_tb, rst => rst_tb, d
         ce_r_tb <= '1';
         wait for 1*6.25ns;
     end process;
-
 
 end Behavioral;

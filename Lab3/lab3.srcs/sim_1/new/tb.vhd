@@ -40,14 +40,14 @@ component blender2 is
            );
 end component blender2;
 
-    signal sin, cos, a_tb: std_logic_vector(7 downto 0);
+    signal vid1, vid2, a_tb: std_logic_vector(7 downto 0);
     signal clk_tb, rst_tb: std_logic;
     signal mix_out, blend1_out, blend2_out: std_logic_vector(15 downto 0);
     
 begin
-    uut0: mixer port map (p0 => sin, p1 => cos, a => a_tb, clk => clk_tb, rst => rst_tb, mixer => mix_out);
-    uut1: blender1 port map (v0 => sin, v1 => cos, a => a_tb, clk => clk_tb, rst => rst_tb, blend1 => blend1_out);
-    uut2: blender2 port map (v0 => sin, v1 => cos, a => a_tb, clk => clk_tb, rst => rst_tb, blend2 => blend2_out);
+    uut0: mixer port map (p0 => vid1, p1 => vid2, a => a_tb, clk => clk_tb, rst => rst_tb, mixer => mix_out);
+    uut1: blender1 port map (v0 => vid1, v1 => vid2, a => a_tb, clk => clk_tb, rst => rst_tb, blend1 => blend1_out);
+    uut2: blender2 port map (v0 => vid1, v1 => vid2, a => a_tb, clk => clk_tb, rst => rst_tb, blend2 => blend2_out);
     
     a_tb <= "01111111";
     process
@@ -61,12 +61,12 @@ begin
         while not endfile(in_file) loop
             readline(in_file, in_line);
             read(in_line, data);
-            sin <= std_logic_vector(to_unsigned(data, sin'length));
+            vid1 <= std_logic_vector(to_unsigned(data, vid1'length));
             
             readline(in_file_del, in_line);
             readline(in_file_del, in_line);
             read(in_line, data);
-            cos <= std_logic_vector(to_unsigned(data, cos'length));
+            vid2 <= std_logic_vector(to_unsigned(data, vid2'length));
 
             wait for 12.5ns;
         end loop;

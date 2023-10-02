@@ -34,7 +34,7 @@ signal p, temp1, temp2: signed(15 downto 0);
 attribute use_dsp48 : string;
 attribute use_dsp48 of temp1 : signal is "yes";
 begin
-  
+
 UUT2 : clk_wiz_0
    port map ( 
   -- Clock out ports  
@@ -46,7 +46,7 @@ UUT2 : clk_wiz_0
    -- Clock in ports
    clk_in1 => clk
  );
- 
+
     process(clk_2x, rst)
     begin
         if(rst = '1') then

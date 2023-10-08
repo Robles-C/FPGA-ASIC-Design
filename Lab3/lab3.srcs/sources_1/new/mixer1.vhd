@@ -32,7 +32,7 @@ begin
         elsif(rising_edge(clk)) then
             -- Perform multiplication and addition operations
             top <= p0s * as;
-            bottom <= p1s * ("11111111" - as);
+            bottom <= p1s * ("01111111" - as);
             result <= top + bottom;
         else
             result <= result;

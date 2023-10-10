@@ -1,8 +1,8 @@
 Warning: File ../../../../lab2v2.sim/sim_1/behav/xsim/8MHz.txt could not be opened
-on HDL file C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd line 33
+on HDL file C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd line 44
 Time resolution is 1 ps
 ERROR: File ../../../../lab2v2.sim/sim_1/behav/xsim/8MHz.txt is not open. Cannot call endfile on it
-Time: 12500 ps  Iteration: 0  Process: /cic_tb/line__32
+Time: 12500 ps  Iteration: 0  Process: /cic_tb/line__43
   File: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd
 
-HDL Line: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd:38
+HDL Line: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd:49

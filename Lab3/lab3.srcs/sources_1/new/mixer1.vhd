@@ -11,8 +11,6 @@ entity mixer is
         rst: in std_logic;
         mixer : out std_logic_vector(15 downto 0)
     );
-    attribute use_dsp48         : string;
-    attribute use_dsp48 of mixer : signal is "yes";
 end mixer;
 
 architecture Behavioral of mixer is
@@ -28,12 +26,10 @@ begin
     process(clk, rst)
     begin
         if(rst = '1') then
-            result <= (others => '0');  -- Reset the result to all zeros
+            result <= (others => '0'); 
         elsif(rising_edge(clk)) then
-            -- Perform multiplication and addition operations
-            top <= p0s * as;
-            bottom <= p1s * ("01111111" - as);
-            result <= top + bottom;
+            -- multiplication and addition operations
+            result <= p0s * as + p1s * ("11111111" - as);
         else
             result <= result;
         end if;

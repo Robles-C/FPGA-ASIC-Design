@@ -1,4 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../../lab3.gen/sources_1/ip/c_shift_ram_0/sim/c_shift_ram_0.vhd" \
-
-nosort

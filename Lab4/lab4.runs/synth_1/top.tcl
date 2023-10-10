@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z010clg400-1
 
@@ -89,6 +90,7 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab4/lab4.srcs/sources_1/new/gpio.vhd
+  C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab4/lab4.srcs/sources_1/new/sevenSeg.vhd
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab4/lab4.srcs/sources_1/new/top.vhd
 }
 OPTRACE "Adding files" END { }

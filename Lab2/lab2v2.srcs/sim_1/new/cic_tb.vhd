@@ -26,9 +26,20 @@ architecture Behavioral of cic_tb is
     signal d_tb: std_logic_vector(17 downto 0); 
     signal q_tb: std_logic_vector(29 downto 0);
 begin
+    uut: cic port map (clk => clk_tb, ce => ce_tb, ce_r => ce_r_tb, rst => rst_tb, d => d_tb, q => q_tb);
 
-uut: cic port map (clk => clk_tb, ce => ce_tb, ce_r => ce_r_tb, rst => rst_tb, d => d_tb, q => q_tb);
+    -- Clock generation
+    process
+    begin
+        loop
+            clk_tb <= '0';
+            wait for 6.25ns;
+            clk_tb <= '1';
+            wait for 6.25ns;
+        end loop;
+    end process;
 
+    -- Input data reading
     process
         file in_file: text open read_mode is "../../../../lab2v2.sim/sim_1/behav/xsim/8MHz.txt";
         variable in_line: line;
@@ -46,27 +57,29 @@ uut: cic port map (clk => clk_tb, ce => ce_tb, ce_r => ce_r_tb, rst => rst_tb, d
         wait;
     end process;
 
-    process
+    -- Output data writing
+    process(clk_tb)
         file out_file: text open write_mode is "../../../../lab2v2.sim/sim_1/behav/xsim/O8MHz.txt";
         variable outline: line;
     begin
-        clk_tb <= '0';
-        wait for 6.25ns;
-        clk_tb <= '1';
-        wait for 6.25ns;      
-        write(outline, q_tb);
-        writeline(out_file, outline);
+        if rising_edge(clk_tb) then
+            write(outline, q_tb);
+            writeline(out_file, outline);
+        end if;
     end process;
 
+    -- Reset and Clock Enable
     process
     begin
         rst_tb <= '1';
         ce_tb <= '1';
         wait for 12.5ns;
         rst_tb <= '0';
+        wait for 100 us; -- Example time after which the simulation will end
         wait;
     end process;
 
+    -- Decimated Clock Enable
     process
     begin
         ce_r_tb <= '0';

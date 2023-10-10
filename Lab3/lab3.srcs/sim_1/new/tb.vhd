@@ -49,12 +49,12 @@ begin
     uut1: blender1 port map (v0 => vid1, v1 => vid2, a => a_tb, clk => clk_tb, rst => rst_tb, blend1 => blend1_out);
     uut2: blender2 port map (v0 => vid1, v1 => vid2, a => a_tb, clk => clk_tb, rst => rst_tb, blend2 => blend2_out);
     
-    a_tb <= "01010101";
+    a_tb <= "11111111";
     process
     --C:\Users\Cristian\ECE524\FPGA-ASIC-Design\Lab3\lab3.srcs\sim_1\new\y1.txt
-        file in_file: text open read_mode is "..\..\..\..\lab3.sim\sim_1\behav\xsim\y1.txt";
-        file in_file_del: text open read_mode is "..\..\..\..\lab3.sim\sim_1\behav\xsim\y2.txt";
-        
+        file in_file: text open read_mode is "..\..\..\..\lab3.srcs\sim_1\new\y1.txt";
+        file in_file_del: text open read_mode is "..\..\..\..\lab3.srcs\sim_1\new\y2.txt";
+       
         variable in_line: line;
         variable data: integer; 
     begin
@@ -67,7 +67,7 @@ begin
             read(in_line, data);
             vid2 <= std_logic_vector(to_unsigned(data, vid2'length));
 
-            wait for 1.5ns;
+            wait for 1ns;
         end loop;
         file_close(in_file);
         wait;
@@ -75,16 +75,17 @@ begin
     
     process
     begin
+        
         clk_tb <= '0';
-        wait for 6.25ns;
+        wait for 5ns;
         clk_tb <= '1';
-        wait for 6.25ns;
+        wait for 5ns;
     end process;
     
     process
         begin
         rst_tb <= '1';
-        wait for 5ns;
+        wait for 2ns;
         rst_tb <= '0';
         wait;
     end process;

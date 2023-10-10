@@ -49,7 +49,7 @@ begin
     uut1: blender1 port map (v0 => vid1, v1 => vid2, a => a_tb, clk => clk_tb, rst => rst_tb, blend1 => blend1_out);
     uut2: blender2 port map (v0 => vid1, v1 => vid2, a => a_tb, clk => clk_tb, rst => rst_tb, blend2 => blend2_out);
     
-    a_tb <= "11111111";
+    a_tb <= "00000000";
     process
     --C:\Users\Cristian\ECE524\FPGA-ASIC-Design\Lab3\lab3.srcs\sim_1\new\y1.txt
         file in_file: text open read_mode is "..\..\..\..\lab3.srcs\sim_1\new\y1.txt";

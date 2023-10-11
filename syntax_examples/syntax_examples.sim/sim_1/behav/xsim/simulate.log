@@ -1,0 +1,4 @@
+Time resolution is 1 ps
+Note: TEST PASSED
+Time: 965 ns  Iteration: 0  Process: /testbench/test_case  File: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/syntax_examples/syntax_examples.srcs/sim_1/new/testbench.vhd
+$finish called at time : 965 ns : File "C:/Users/Cristian/ECE524/FPGA-ASIC-Design/syntax_examples/syntax_examples.srcs/sim_1/new/testbench.vhd" Line 209

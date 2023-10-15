@@ -1,0 +1,9 @@
+0.7
+2020.2
+Apr 18 2022
+16:05:34
+C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0_sim_netlist.v,1697322436,verilog,,,,clk_wiz_0;clk_wiz_0_clk_wiz,,,,,,,,
+C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.sim/sim_1/behav/xsim/glbl.v,1649976174,verilog,,,,glbl,,,,,,,,
+C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sources_1/new/gpio.vhd,1697258116,vhdl,,,,gpio,,,,,,,,
+C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sources_1/new/sevenSeg.vhd,1697315862,vhdl,,,,sevenseg,,,,,,,,
+C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sources_1/new/top.vhd,1697323771,vhdl,,,,top,,,,,,,,

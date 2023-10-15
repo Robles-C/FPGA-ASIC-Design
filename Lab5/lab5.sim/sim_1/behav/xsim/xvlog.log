@@ -1,0 +1,7 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.gen/sources_1/ip/clk_wiz_0_1/clk_wiz_0_sim_netlist.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0
+INFO: [VRFC 10-311] analyzing module clk_wiz_0_clk_wiz
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'glbl' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.sim/sim_1/behav/xsim/glbl.v:6]

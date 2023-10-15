@@ -1,0 +1,6 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sources_1/new/gpio.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'GPIO'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sources_1/new/sevenSeg.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'sevenSeg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sources_1/new/top.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'top'

@@ -13,7 +13,9 @@ entity top is
 end top;
 
 architecture Behavioral of top is
-
+    --clock wizard stuff
+    signal clk_125: std_logic;
+    
     signal currVal : std_logic_vector(3 downto 0); -- switch values
     signal segsel :std_logic := '0'; -- segment display selection
     
@@ -42,6 +44,14 @@ architecture Behavioral of top is
     type count10states is (COUNT10, ADD10,RESET10); -- states of seven segment display
     signal c10States : count10states := COUNT10; -- initial state
     
+    component clk_wiz_0
+        port(
+          reset             : in     std_logic;
+          clk_in1           : in     std_logic;
+          clk_out1          : out    std_logic;
+          locked            : out    std_logic);
+    end component;
+    
     component GPIO is
         Port ( gpio_in : in  STD_LOGIC_VECTOR(3 downto 0);
                gpio_out : out STD_LOGIC_VECTOR(3 downto 0));
@@ -49,17 +59,25 @@ architecture Behavioral of top is
     
     component sevenSeg is
         Port ( segSel : in STD_LOGIC;
-               segIn : integer; 
+               segIn  : integer; 
                segOut : out  STD_LOGIC_VECTOR(7 downto 0));
     end component;
     
 begin
+    clk_manager : clk_wiz_0
+    port map (
+        reset => btn0, -- input from button 0 goes to reset input for clkwzd
+        clk_in1 => sysclk,
+        clk_out1 => clk_125,
+        locked => led6_g -- locks ouput from wzd goes to rgb green
+    );
+    
     GPIO_switches : GPIO 
     port map (
         gpio_in => sw, 
         gpio_out => currVal
     );
-
+    
     GPIO_leds : GPIO 
     port map (
         gpio_in => currVal,
@@ -73,23 +91,10 @@ begin
         segOut => jc
     );
     
-    led6_g <= '1';
-    
-    process(sysclk)
+    process(clk_125)
     begin
-    
-    --reset counter when button 0 is pressed
-    if btn0 = '1' then
-        currSeg1 <= 0;
-        currSeg2 <= 0;
-        SSDcounter <= 0;
-        oneScounter <= 0;
-        tenScounter <= 0;
-        c1States <= RESET1;
-        c10States <= RESET10;
-    end if;
         
-    if rising_edge(sysclk) then
+    if rising_edge(clk_125) then
         --case for switching segments 
         case state is
             when DELAYING => -- delay state for switching between ssd 1 and ssd 2
@@ -102,20 +107,20 @@ begin
                 end if;
         
             when SWITCHING => -- actual switch
-                SSDdelay_done <= '0';
-                segsel <= not segsel;
+                SSDdelay_done <= '0'; -- update flag
+                segsel <= not segsel; -- switch to other ssd
                 SSDcounter <= 0;
-                if segsel = '1' then
-                    segInput <= currSeg2;
+                if segsel = '1' then 
+                    segInput <= currSeg2; -- if segment 1 is selected the ipnut is curseg2
                 elsif segsel = '0' then
-                    segInput <= currSeg1;
+                    segInput <= currSeg1; -- if segment 0 is selected the ipnut is curseg1
                 end if;             
-                state <= DELAYING;
+                state <= DELAYING; -- return to delay state
         end case;
         
         --case for 1 second counter
         case c1States is
-            when COUNT1 =>
+            when COUNT1 => -- count until delay has happened
                 if oneScounter < oneS_delay then
                     oneScounter <= oneScounter + 1;
                 else
@@ -124,17 +129,17 @@ begin
                     c1States <= ADD1;
                 end if;
             
-            when ADD1 =>
+            when ADD1 => -- once delay has happened add one to current segment val
                 ONEdelay_done <= '0';
                 oneScounter <= 0;
                 currSeg2 <= currSeg2 + 1;
-                if currSeg2 < 9 then
+                if currSeg2 < 9 then -- if curseg <9 keep incrementing
                     c1States <= COUNT1;
-                else
+                else -- otherwise reset
                     c1States <= RESET1;
                 end if;
             
-            when RESET1 =>
+            when RESET1 => -- set values back to zero and begin again from 1st state
                 currSeg2 <= 0;
                 c1States <= COUNT1;
         
@@ -168,7 +173,14 @@ begin
         end case;
         
     end if;
-
+    if btn0 = '1' then
+        oneScounter <= 0;
+        tenScounter <= 0;
+        c1States <= RESET1;
+        c10States <= RESET10;
+        currSeg1 <= 0;
+        currSeg2 <= 0;
+    end if;
     end process;
     
 end Behavioral;

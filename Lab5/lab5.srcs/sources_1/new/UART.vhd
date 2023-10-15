@@ -5,12 +5,12 @@ entity UART is
     Port (
         clk      : in  STD_LOGIC;
         reset    : in  STD_LOGIC;
-        tx_start : in  STD_LOGIC;
         data_in  : in  STD_LOGIC_VECTOR(7 downto 0);
-        rx       : in  STD_LOGIC;
         data_out : out STD_LOGIC_VECTOR(7 downto 0);
+        rx       : in  STD_LOGIC;
         rx_ready : out STD_LOGIC;
-        tx       : out STD_LOGIC
+        tx       : out STD_LOGIC;
+        tx_start : in  STD_LOGIC
     );
 end UART;
 

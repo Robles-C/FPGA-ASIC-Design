@@ -73,13 +73,13 @@ architecture Behavioral of top is
     
     component UART is
         Port ( clk      : in  STD_LOGIC;
-               reset    : in  STD_LOGIC; 
-               tx_start : in  STD_LOGIC;
+               reset    : in  STD_LOGIC;
                data_in  : in  STD_LOGIC_VECTOR(7 downto 0);
-               rx       : in  STD_LOGIC;
                data_out : out STD_LOGIC_VECTOR(7 downto 0);
+               rx       : in  STD_LOGIC;
                rx_ready : out STD_LOGIC;
-               tx       : out STD_LOGIC );
+               tx       : out STD_LOGIC;
+               tx_start : in  STD_LOGIC);
     end component;
     
 begin
@@ -114,12 +114,12 @@ begin
     port map ( 
         clk => clk_125,
         reset => btn0,
-        tx_start => txStart,
         data_in => inputData,
-        rx => rxSig,
         data_out => outputData,
+        rx => rxSig,
         rx_ready => rx_ready,
-        tx => txSig
+        tx => txSig,
+        tx_start => txStart
     );
     
 --    process for ssd

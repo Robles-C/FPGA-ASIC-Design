@@ -10,7 +10,7 @@ end cic_tb;
 architecture Behavioral of cic_tb is
     component cic is
         generic (
-            CI_SIZE : integer := 18; 
+            CI_SIZE : integer := 16; 
             CO_SIZE : integer := 30; 
             STAGES : integer := 5);
         port (
@@ -23,34 +23,41 @@ architecture Behavioral of cic_tb is
         end component cic;
 
     signal clk_tb, ce_tb, ce_r_tb, rst_tb: std_logic;
-    signal d_tb: std_logic_vector(17 downto 0); 
+    signal d_tb: std_logic_vector(15 downto 0); 
     signal q_tb: std_logic_vector(29 downto 0);
 begin
-    uut: cic port map (clk => clk_tb, ce => ce_tb, ce_r => ce_r_tb, rst => rst_tb, d => d_tb, q => q_tb);
-
-    -- Clock generation
+    uut: cic port map (clk => clk_tb,
+                       ce => ce_tb, 
+                       ce_r => ce_r_tb, 
+                       rst => rst_tb, 
+                       d => d_tb, 
+                       q => q_tb);
+    --create clk
     process
     begin
         loop
             clk_tb <= '0';
-            wait for 6.25ns;
+            wait for 8ns;
             clk_tb <= '1';
-            wait for 6.25ns;
+            wait for 8ns;
         end loop;
     end process;
 
     -- Input data reading
     process
-        file in_file: text open read_mode is "../../../../lab2v2.sim/sim_1/behav/xsim/8MHz.txt";
+        --file in_file: text open read_mode is "..\..\..\..\lab2v2.srcs\sim_1\new\16MHz.txt";
+        file in_file: text open read_mode is "\16MHz.txt";
+        --file in_file: text open read_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\24MHz.txt";
+        
         variable in_line: line;
         variable data: std_ulogic_vector(31 downto 0);   
     begin
-        wait for 12.5ns;
+        wait for 16ns;
         while not endfile(in_file) loop
             readline(in_file, in_line);
             hread(in_line, data);
-            d_tb <= std_logic_vector(data(17 downto 0));
-            wait for 12.5ns;
+            d_tb <= std_logic_vector(data(15 downto 0));
+            wait for 16ns;
         end loop;
         file_close(in_file);
         d_tb <= (others => '0');
@@ -59,7 +66,9 @@ begin
 
     -- Output data writing
     process(clk_tb)
-        file out_file: text open write_mode is "../../../../lab2v2.sim/sim_1/behav/xsim/O8MHz.txt";
+        --file out_file: text open write_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\O8MHz.txt";
+        file out_file: text open read_mode is "\O16MHz.txt";
+        --file out_file: text open write_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\O24MHz.txt";
         variable outline: line;
     begin
         if rising_edge(clk_tb) then
@@ -73,7 +82,7 @@ begin
     begin
         rst_tb <= '1';
         ce_tb <= '1';
-        wait for 12.5ns;
+        wait for 8ns;
         rst_tb <= '0';
         wait for 100 us; -- Example time after which the simulation will end
         wait;
@@ -83,9 +92,9 @@ begin
     process
     begin
         ce_r_tb <= '0';
-        wait for 9*6.25ns;
+        wait for 70ns; -- decimated by factor of 5
         ce_r_tb <= '1';
-        wait for 1*6.25ns;
+        wait for 8ns;
     end process;
 
 end Behavioral;

@@ -57,24 +57,24 @@ architecture Behavioral of testbench is
   signal locked_tb         : std_logic;
   signal ssd_tb            : std_logic_vector(7 downto 0);
   --uart stuff from lab 5
-  signal tb_TX_DV        : std_logic := '0';
-  signal tb_TX_Byte      : std_logic_vector(7 downto 0) := ("00000000");
-  signal tb_TX_Active    : std_logic;
-  signal tb_TX_Serial    : std_logic;
-  signal tb_TX_Done      : std_logic;
-  signal tb_RX_DV        : std_logic;
-  signal tb_RX_Byte      : std_logic_vector(7 downto 0);
+  signal TX_Byte_tb        : std_logic_vector(7 downto 0) := ("00000000");
+  signal RX_Byte_tb        : std_logic_vector(7 downto 0);
+  signal TX_DV_tb          : std_logic := '0';
+  signal RX_DV_tb          : std_logic;
+  signal TX_Active_tb      : std_logic;
+  signal TX_Serial_tb      : std_logic;
+  signal TX_Done_tb        : std_logic;
   
   constant g_CLKS_PER_BIT: integer := 217;
 begin
    
-  clk_process : process
+  clk_gen : process
   begin
     clk_tb <= not clk_tb;
     wait for CLK_PERIOD / 2;
   end process;
    
-  reset_process : process
+  reset_gen : process
   begin
     reset_tb <= '0';
     wait for 50 ns;
@@ -100,11 +100,11 @@ begin
   )
   port map (
     i_Clk       => clk_tb,
-    i_TX_DV     => tb_TX_DV,
-    i_TX_Byte   => tb_TX_Byte,
-    o_TX_Active => tb_TX_Active,
-    o_TX_Serial => tb_TX_Serial,
-    o_TX_Done   => tb_TX_Done
+    i_TX_DV     => TX_DV_tb,
+    i_TX_Byte   => TX_Byte_tb,
+    o_TX_Active => TX_Active_tb,
+    o_TX_Serial => TX_Serial_tb,
+    o_TX_Done   => TX_Done_tb
   );
 
   U2: uart_rx_tb
@@ -113,9 +113,9 @@ begin
   )
   port map (
     i_Clk       => clk_tb,
-    i_RX_Serial => tb_TX_Serial,
-    o_RX_DV     => tb_RX_DV,
-    o_RX_Byte   => tb_RX_Byte
+    i_RX_Serial => TX_Serial_tb,
+    o_RX_DV     => RX_DV_tb,
+    o_RX_Byte   => RX_Byte_tb
   );
   
   test_process : process
@@ -134,18 +134,19 @@ begin
     
     wait for 200ns;
     
-    tb_TX_DV <= '1'; -- data ready to send flag
-    tb_TX_Byte <= "10101111"; --data sent. 0xAF in hex 
+    TX_Byte_tb <= "10101111"; --data sent. 0xAF in hex 
+    TX_DV_tb <= '1'; -- data ready to send flag
+    
     wait for 1000ns; --delay so data can transmit
-    tb_TX_DV <= '0'; -- tx done
+    TX_DV_tb <= '0'; -- tx done
     
     wait for 20000ns; -- Wait for transmission to complete
     
-    tb_RX_Byte <= tb_TX_Byte; 
+    RX_Byte_tb <= TX_Byte_tb; 
 
     wait for 200ns;
         
-    if tb_RX_Byte /= tb_TX_Byte then
+    if RX_Byte_tb /= TX_Byte_tb then
         report "RX does not match TX" severity error;
     else
         report "RX does match TX";

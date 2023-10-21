@@ -122,96 +122,96 @@ begin
         tx_start => txStart
     );
     
---    process for ssd
---    process(clk_125)
---    begin
+    --process for ssd
+    process(clk_125)
+    begin
      
---    if rising_edge(clk_125) then
---        --case for switching segments 
---        case state is
---            when DELAYING => -- delay state for switching between ssd 1 and ssd 2
---                if SSDcounter < ssd_delay then
---                    SSDcounter <= SSDcounter + 1;
---                else
---                    SSDdelay_done <= '1';
---                    SSDcounter <= 0;
---                    state <= SWITCHING;
---                end if;
+    if rising_edge(clk_125) then
+        --case for switching segments 
+        case state is
+            when DELAYING => -- delay state for switching between ssd 1 and ssd 2
+                if SSDcounter < ssd_delay then
+                    SSDcounter <= SSDcounter + 1;
+                else
+                    SSDdelay_done <= '1';
+                    SSDcounter <= 0;
+                    state <= SWITCHING;
+                end if;
             
---            when SWITCHING => -- actual switch
---                SSDdelay_done <= '0'; -- update flag
---                segsel <= not segsel; -- switch to other ssd
---                SSDcounter <= 0;
---                if segsel = '1' then 
---                    segInput <= currSeg2; -- if segment 1 is selected the ipnut is curseg2
---                elsif segsel = '0' then
---                    segInput <= currSeg1; -- if segment 0 is selected the ipnut is curseg1
---                end if;             
---                state <= DELAYING; -- return to delay state
---        end case;
+            when SWITCHING => -- actual switch
+                SSDdelay_done <= '0'; -- update flag
+                segsel <= not segsel; -- switch to other ssd
+                SSDcounter <= 0;
+                if segsel = '1' then 
+                    segInput <= currSeg2; -- if segment 1 is selected the ipnut is curseg2
+                elsif segsel = '0' then
+                    segInput <= currSeg1; -- if segment 0 is selected the ipnut is curseg1
+                end if;             
+                state <= DELAYING; -- return to delay state
+        end case;
             
---        --case for 1 second counter
---        case c1States is
---            when COUNT1 => -- count until delay has happened
---                if oneScounter < oneS_delay then
---                    oneScounter <= oneScounter + 1;
---                else
---                    ONEdelay_done <= '1';
---                    oneScounter <= 0;
---                    c1States <= ADD1;
---                end if;
+        --case for 1 second counter
+        case c1States is
+            when COUNT1 => -- count until delay has happened
+                if oneScounter < oneS_delay then
+                    oneScounter <= oneScounter + 1;
+                else
+                    ONEdelay_done <= '1';
+                    oneScounter <= 0;
+                    c1States <= ADD1;
+                end if;
                 
---            when ADD1 => -- once delay has happened add one to current segment val
---                ONEdelay_done <= '0';
---                oneScounter <= 0;
---                currSeg2 <= currSeg2 + 1;
---                if currSeg2 < 9 then -- if curseg <9 keep incrementing
---                    c1States <= COUNT1;
---                else -- otherwise reset
---                    c1States <= RESET1;
---                end if;
+            when ADD1 => -- once delay has happened add one to current segment val
+                ONEdelay_done <= '0';
+                oneScounter <= 0;
+                currSeg2 <= currSeg2 + 1;
+                if currSeg2 < 9 then -- if curseg <9 keep incrementing
+                    c1States <= COUNT1;
+                else -- otherwise reset
+                    c1States <= RESET1;
+                end if;
             
---           when RESET1 => -- set values back to zero and begin again from 1st state
---                currSeg2 <= 0;
---                c1States <= COUNT1;
+           when RESET1 => -- set values back to zero and begin again from 1st state
+                currSeg2 <= 0;
+                c1States <= COUNT1;
             
---        end case;
+        end case;
             
---        --case for 10 second counter
---        case c10States is
---            when COUNT10 =>
---                if tenScounter < tenS_delay then
---                    tenScounter <= tenScounter + 1;
---                else
---                    TENdelay_done <= '1';
---                    tenScounter <= 0;
---                    c10States <= ADD10;
---                end if;
+        --case for 10 second counter
+        case c10States is
+            when COUNT10 =>
+                if tenScounter < tenS_delay then
+                    tenScounter <= tenScounter + 1;
+                else
+                    TENdelay_done <= '1';
+                    tenScounter <= 0;
+                    c10States <= ADD10;
+                end if;
             
---           when ADD10 =>
---                TENdelay_done <= '0';
---                tenScounter <= 0;
---                currSeg1 <= currSeg1 + 1;
---                if currSeg1 < 9 then
---                    c10States <= COUNT10;
---                else
---                    c10States <= RESET10;
---                end if;
+           when ADD10 =>
+                TENdelay_done <= '0';
+                tenScounter <= 0;
+                currSeg1 <= currSeg1 + 1;
+                if currSeg1 < 9 then
+                    c10States <= COUNT10;
+                else
+                    c10States <= RESET10;
+                end if;
                     
---            when RESET10 =>
---                currSeg1 <= 0;
---                c10States <= COUNT10;
+            when RESET10 =>
+                currSeg1 <= 0;
+                c10States <= COUNT10;
             
---        end case;
---    end if;
---    if btn0 = '1' then
---        oneScounter <= 0;
---        tenScounter <= 0;
---        c1States <= RESET1;
---        c10States <= RESET10;
---        currSeg1 <= 0;
---        currSeg2 <= 0;
---    end if;
---    end process;
+        end case;
+    end if;
+    if btn0 = '1' then
+        oneScounter <= 0;
+        tenScounter <= 0;
+        c1States <= RESET1;
+        c10States <= RESET10;
+        currSeg1 <= 0;
+        currSeg2 <= 0;
+    end if;
+    end process;
     
 end Behavioral;

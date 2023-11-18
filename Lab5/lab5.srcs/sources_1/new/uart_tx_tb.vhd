@@ -59,7 +59,7 @@ begin
           r_Bit_Index <= 0;
 
           if i_TX_DV = '1' then
-            r_TX_Data <= i_TX_Byte;
+            r_TX_Data <= i_TX_Byte; -- 8 bits recieved in parralel
             r_SM_Main <= TX_START_BIT;
           else
             r_SM_Main <= IDLE;
@@ -115,7 +115,6 @@ begin
             r_Clk_Count <= 0;
             r_SM_Main   <= CLEANUP;
           end if;
-
 
         -- Stay here 1 clock
         when CLEANUP =>

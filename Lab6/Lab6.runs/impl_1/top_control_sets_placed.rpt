@@ -1,0 +1,120 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
+| Date         : Sat Nov  4 22:47:26 2023
+| Host         : BOOK-22PN8T4506 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
+| Design       : top
+| Device       : xc7z010
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    42 |
+|    Minimum number of control sets                        |    42 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   142 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    42 |
+| >= 0 to < 4        |     6 |
+| >= 4 to < 6        |    10 |
+| >= 6 to < 8        |     2 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    22 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               8 |            4 |
+| No           | No                    | Yes                    |              96 |           37 |
+| No           | Yes                   | No                     |              96 |           32 |
+| Yes          | No                    | No                     |              17 |            6 |
+| Yes          | No                    | Yes                    |              27 |            8 |
+| Yes          | Yes                   | No                     |             366 |          109 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------------------------------+------------------------------------------------------+-----------------------------------------------------------------+------------------+----------------+--------------+
+|             Clock Signal             |                     Enable Signal                    |                         Set/Reset Signal                        | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------+------------------------------------------------------+-----------------------------------------------------------------+------------------+----------------+--------------+
+|  display/segment0_map_reg[1]_i_2_n_0 |                                                      | display/segment0_map_reg[1]_i_3_n_0                             |                1 |              1 |         1.00 |
+|  display/segment1_map_reg[1]_i_2_n_0 |                                                      | display/segment1_map_reg[1]_i_3_n_0                             |                1 |              1 |         1.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | uart_inst/transmitter/baud_rate_clk_reg_n_0          | sys_con/Q[0]                                                    |                1 |              1 |         1.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/Q[0]                                         | keypad_inst/count[5]_i_1_n_0                                    |                1 |              1 |         1.00 |
+|  display/segment0_map_reg[6]_i_2_n_0 |                                                      | display/segment0_map_reg[6]_i_3_n_0                             |                1 |              2 |         2.00 |
+|  display/segment1_map_reg[6]_i_2_n_0 |                                                      | display/segment1_map_reg[6]_i_3_n_0                             |                1 |              2 |         2.00 |
+|  display/segment0_map_reg[5]_i_2_n_0 |                                                      | display/segment0_map_reg[5]_i_3_n_0                             |                1 |              4 |         4.00 |
+|  display/segment1_map_reg[5]_i_2_n_0 |                                                      | display/segment1_map_reg[5]_i_3_n_0                             |                1 |              4 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | keypad_inst/keys_int[0]_i_1_n_0                      | sys_con/reset_counter_reg[31]_0                                 |                1 |              4 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | keypad_inst/keys_int[10]_i_1_n_0                     | sys_con/reset_counter_reg[31]_0                                 |                2 |              4 |         2.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | display/one_second_timer/segment1_count              | sys_con/Q[0]                                                    |                1 |              4 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | display/one_second_timer/timer_0                     | sys_con/Q[0]                                                    |                2 |              4 |         2.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | uart_inst/transmitter/FSM_onehot_tx_state[3]_i_1_n_0 | sys_con/Q[0]                                                    |                1 |              4 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | keypad_inst/keys_int[2]_i_1_n_0                      | sys_con/reset_counter_reg[31]_0                                 |                1 |              4 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | keypad_inst/keys_int[3]_i_1_n_0                      | sys_con/reset_counter_reg[31]_0                                 |                1 |              4 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/Q[0]                                         |                                                                 |                1 |              5 |         5.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/E[0]                                         |                                                                 |                3 |              6 |         2.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | uart_inst/transmitter/stored_data_0                  |                                                                 |                2 |              6 |         3.00 |
+|  sys_con/clk_wizard/inst/clk_out1    |                                                      |                                                                 |                4 |              8 |         2.00 |
+|  sys_con/clk_wizard/inst/clk_out1    | keypad_inst/FSM_onehot_columns[10]_i_1_n_0           | sys_con/reset_counter_reg[31]_0                                 |                3 |             11 |         3.67 |
+|  sys_con/clk_wizard/inst/clk_out1    | keypad_inst/keys_stored[0]_i_2_n_0                   | keypad_inst/keys_stored[0]_i_1_n_0                              |                7 |             16 |         2.29 |
+|  sys_con/clk_wizard/inst/clk_out1    |                                                      | sys_con/Q[0]                                                    |               10 |             18 |         1.80 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_15                                    | keypad_inst/row_debounce[15].debounce_keys/count[0]_i_1__16_n_0 |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_4                                     | keypad_inst/row_debounce[4].debounce_keys/count[0]_i_1__5_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_2                                     | keypad_inst/row_debounce[2].debounce_keys/count[0]_i_1__3_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_7                                     | keypad_inst/row_debounce[7].debounce_keys/count[0]_i_1__8_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0                                       | keypad_inst/row_debounce[0].debounce_keys/count[0]_i_1__1_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_9                                     | keypad_inst/row_debounce[9].debounce_keys/count[0]_i_1__10_n_0  |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_13                                    | keypad_inst/row_debounce[13].debounce_keys/count[0]_i_1__14_n_0 |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_14                                    | keypad_inst/row_debounce[14].debounce_keys/count[0]_i_1__15_n_0 |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_11                                    | keypad_inst/row_debounce[11].debounce_keys/count[0]_i_1__12_n_0 |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_10                                    | keypad_inst/row_debounce[10].debounce_keys/count[0]_i_1__11_n_0 |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_3                                     | keypad_inst/row_debounce[3].debounce_keys/count[0]_i_1__4_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_5                                     | keypad_inst/row_debounce[5].debounce_keys/count[0]_i_1__6_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_8                                     | keypad_inst/row_debounce[8].debounce_keys/count[0]_i_1__9_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_6                                     | keypad_inst/row_debounce[6].debounce_keys/count[0]_i_1__7_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_1                                     | keypad_inst/row_debounce[1].debounce_keys/count[0]_i_1__2_n_0   |                6 |             21 |         3.50 |
+|  sys_con/clk_wizard/inst/clk_out1    | sys_con/count0_12                                    | keypad_inst/row_debounce[12].debounce_keys/count[0]_i_1__13_n_0 |                6 |             21 |         3.50 |
+|  XCLK_IBUF_BUFG                      |                                                      | XRESET_IBUF                                                     |                9 |             32 |         3.56 |
+|  sys_con/clk_wizard/inst/clk_out1    |                                                      | sys_con/clear_0                                                 |                8 |             32 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    |                                                      | sys_con/clear                                                   |                8 |             32 |         4.00 |
+|  sys_con/clk_wizard/inst/clk_out1    |                                                      | sys_con/reset_counter_reg[31]_0                                 |               28 |             64 |         2.29 |
++--------------------------------------+------------------------------------------------------+-----------------------------------------------------------------+------------------+----------------+--------------+
+
+

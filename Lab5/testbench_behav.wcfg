@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="84,439,998 ps"></ZoomStartTime>
+      <ZoomEndTime time="84,440,001 ps"></ZoomEndTime>
+      <Cursor1Time time="84,440,000 ps"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="277"></NameColumnWidth>
+      <ValueColumnWidth column_width="133"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/testbench/clk_tb" type="logic">
+      <obj_property name="ElementShortName">clk_tb</obj_property>
+      <obj_property name="ObjectShortName">clk_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/reset_tb" type="logic">
+      <obj_property name="ElementShortName">reset_tb</obj_property>
+      <obj_property name="ObjectShortName">reset_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/switches_tb" type="array">
+      <obj_property name="ElementShortName">switches_tb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">switches_tb[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/leds_tb" type="array">
+      <obj_property name="ElementShortName">leds_tb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">leds_tb[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/locked_tb" type="logic">
+      <obj_property name="ElementShortName">locked_tb</obj_property>
+      <obj_property name="ObjectShortName">locked_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/ssd_tb" type="array">
+      <obj_property name="ElementShortName">ssd_tb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ssd_tb[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/TX_Byte_tb" type="array">
+      <obj_property name="ElementShortName">TX_Byte_tb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">TX_Byte_tb[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/RX_Byte_tb" type="array">
+      <obj_property name="ElementShortName">RX_Byte_tb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">RX_Byte_tb[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/TX_DV_tb" type="logic">
+      <obj_property name="ElementShortName">TX_DV_tb</obj_property>
+      <obj_property name="ObjectShortName">TX_DV_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/RX_DV_tb" type="logic">
+      <obj_property name="ElementShortName">RX_DV_tb</obj_property>
+      <obj_property name="ObjectShortName">RX_DV_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/TX_Active_tb" type="logic">
+      <obj_property name="ElementShortName">TX_Active_tb</obj_property>
+      <obj_property name="ObjectShortName">TX_Active_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/TX_Serial_tb" type="logic">
+      <obj_property name="ElementShortName">TX_Serial_tb</obj_property>
+      <obj_property name="ObjectShortName">TX_Serial_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/TX_Done_tb" type="logic">
+      <obj_property name="ElementShortName">TX_Done_tb</obj_property>
+      <obj_property name="ObjectShortName">TX_Done_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/TX_board_tb" type="logic">
+      <obj_property name="ElementShortName">TX_board_tb</obj_property>
+      <obj_property name="ObjectShortName">TX_board_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/RX_board_tb" type="logic">
+      <obj_property name="ElementShortName">RX_board_tb</obj_property>
+      <obj_property name="ObjectShortName">RX_board_tb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/CLK_PERIOD" type="other">
+      <obj_property name="ElementShortName">CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/g_CLKS_PER_BIT" type="other">
+      <obj_property name="ElementShortName">g_CLKS_PER_BIT</obj_property>
+      <obj_property name="ObjectShortName">g_CLKS_PER_BIT</obj_property>
+   </wvobject>
+</wave_config>

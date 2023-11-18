@@ -9,7 +9,9 @@ entity top is
            jc : out  STD_LOGIC_VECTOR(7 downto 0);
            sysclk : in STD_LOGIC;
            led6_g : out STD_LOGIC;
-           btn0 : in STD_LOGIC);
+           btn0 : in STD_LOGIC;
+           XTX : out STD_LOGIC;
+           XRX : in STD_LOGIC);
 end top;
 
 architecture Behavioral of top is
@@ -44,14 +46,8 @@ architecture Behavioral of top is
     
     type count10states is (COUNT10, ADD10,RESET10); -- states of seven segment display
     signal c10States : count10states := COUNT10; -- initial state
-    -- UART stuff
-    signal inputData : std_logic_vector(7 downto 0);
-    signal outputData : std_logic_vector(7 downto 0);
-        --
-    signal txStart :std_logic := '0';
-    signal rxSig :std_logic := '0';
-    signal rx_ready :std_logic := '0';
-    signal txSig :std_logic := '0';
+    
+    
     
     component clk_wiz_0
         Port( reset             : in     std_logic;
@@ -74,12 +70,8 @@ architecture Behavioral of top is
     component UART is
         Port ( clk      : in  STD_LOGIC;
                reset    : in  STD_LOGIC;
-               data_in  : in  STD_LOGIC_VECTOR(7 downto 0);
-               data_out : out STD_LOGIC_VECTOR(7 downto 0);
                rx       : in  STD_LOGIC;
-               rx_ready : out STD_LOGIC;
-               tx       : out STD_LOGIC;
-               tx_start : in  STD_LOGIC);
+               tx       : out STD_LOGIC);
     end component;
     
 begin
@@ -114,12 +106,8 @@ begin
     port map ( 
         clk => clk_125,
         reset => btn0,
-        data_in => inputData,
-        data_out => outputData,
-        rx => rxSig,
-        rx_ready => rx_ready,
-        tx => txSig,
-        tx_start => txStart
+        rx => XRX,
+        tx => XTX
     );
     
     --process for ssd

@@ -1,4 +1,0 @@
-Time resolution is 1 ps
-Note: RX does match TX
-Time: 22264100 ps  Iteration: 0  Process: /testbench/test_process  File: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sim_1/new/testbench.vhd
-$finish called at time : 22264100 ps : File "C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab5/lab5.srcs/sim_1/new/testbench.vhd" Line 155

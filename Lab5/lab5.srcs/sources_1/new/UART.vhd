@@ -1,77 +1,164 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity UART is
     Port (
-        clk      : in  STD_LOGIC;
-        reset    : in  STD_LOGIC;
-        data_in  : in  STD_LOGIC_VECTOR(7 downto 0);
-        data_out : out STD_LOGIC_VECTOR(7 downto 0);
-        rx       : in  STD_LOGIC;
-        rx_ready : out STD_LOGIC;
-        tx       : out STD_LOGIC;
-        tx_start : in  STD_LOGIC
+        clk  : in  STD_LOGIC;
+        reset: in  STD_LOGIC;
+        rx   : in  STD_LOGIC;
+        tx   : out STD_LOGIC
     );
 end UART;
 
 architecture Behavioral of UART is
-    signal tx_reg        : STD_LOGIC_VECTOR(9 downto 0); -- 1 start bit, 8 data bits, 1 stop bit
-    signal tx_count      : integer := 0;
-    signal rx_reg        : STD_LOGIC_VECTOR(9 downto 0); -- 1 start bit, 8 data bits, 1 stop bit
-    signal rx_count      : integer := 0;
-    signal rx_data       : STD_LOGIC_VECTOR(7 downto 0);
-    signal rx_ready_flag : STD_LOGIC := '0';
 
+    constant CLKS_PER_BIT: integer := 1085; -- 125,000,000clks/115200bps = 1085
+    
+    type delay_states is (IDLE, DEL);
+    signal delay_state   : delay_states := IDLE;
+    signal delay_done    : std_logic := '0';
+    signal start_delay   : std_logic := '0';
+    signal delayCounter  : natural := 0;
+
+    -- TX stuff
+    type TXstate is (IDLE, START, DATA, STOP);
+    signal TX_states : TXstate := IDLE;
+    signal Bit_IndexT : integer range 0 to 7 := 0;
+    signal TX_Data   : std_logic_vector(7 downto 0) := (others => '0');
+    signal TX_Byte   : std_logic_vector(7 downto 0) := "01011001";
+    signal TX_Done   : std_logic := '0';
+    signal TX_Active : std_logic := '0';
+    signal TX_Ready  : std_logic := '1';
+
+    -- RX stuff
+    type RXstate is (IDLE, START, DATA, STOP);
+    signal RX_states  : RXstate := IDLE;
+    signal Bit_IndexR : integer range 0 to 7 := 0;
+    signal RX_Data   : std_logic_vector(7 downto 0) := (others => '0');
+    signal RX_Byte   : std_logic_vector(7 downto 0) := "00000000";
+    signal RX_Done   : std_logic := '0';
+    signal RX_Active : std_logic := '0';
+    signal RX_Ready  : std_logic := '0';
+    
 begin
-    -- UART Transmitter Process
+
     process(clk, reset)
     begin
         if reset = '1' then
-            tx_reg <= (others => '1'); -- Initialize to all high (marking) state
-            tx_count <= 0;
+            delay_done <= '0';
+            delayCounter <= 0;          
+            delay_state <= IDLE;
+            
+            TX_Done <= '0';
+            TX_states <= IDLE;
+            
+            RX_Done <= '0';
+            RX_states <= IDLE;
         elsif rising_edge(clk) then
-            if tx_count = 0 then
-                if tx_start = '1' then
-                    tx_reg <= '0' & data_in & '1'; -- Start bit, data bits, stop bit
-                    tx_count <= 1;
-                end if;
-            elsif tx_count > 0 and tx_count <= 10 then
-                tx_reg <= '0' & tx_reg(9 downto 1); -- Shift data out
-                tx_count <= tx_count + 1;
-            else
-                tx_reg <= (others => '1'); -- All high (marking) state
-                tx_count <= 0;
-            end if;
+            case delay_state is
+                when DEL => 
+                    if delayCounter < CLKS_PER_BIT then
+                        delayCounter <= delayCounter + 1;
+                    else
+                        delay_done <= '1';
+                        delayCounter <= 0;
+                        start_delay <= '0';
+                        delay_state <= IDLE;
+                    end if;
+
+                when IDLE =>
+                    if start_delay = '1' then      
+                        delay_state <= DEL;
+                    end if;
+            end case;
+            case TX_states is
+                when IDLE =>
+                    TX_Active <= '0';
+                    tx <= '1';
+                    Bit_IndexT <= 0;
+                    
+                    if TX_Ready = '1' then
+                        TX_states <= START;
+                    end if;
+
+                when START =>
+                    TX_Active <= '1';
+                    tx <= '0';
+                    TX_Data <= TX_Byte;
+                    delay_done <= '0';
+                    start_delay <= '1';
+                    
+                    TX_states <= DATA;
+
+                when DATA =>
+                    for i in 0 to 7 loop
+                        tx <= TX_Data(Bit_IndexT);                 
+                        delay_done <= '0';
+                        start_delay <= '1';
+                    end loop;
+                    
+                    if Bit_IndexT < 7 then
+                        Bit_IndexT <= Bit_IndexT + 1;
+                    else
+                        TX_states <= STOP;
+                    end if;
+
+                when STOP =>
+                    tx <= '1';
+                    delay_done <= '0';
+                    start_delay <= '1';
+                    
+                    TX_Done <= '1';
+                    TX_Active <= '0';
+                    TX_Ready <= '0';
+                    TX_states <= IDLE;
+            end case;
+            
+            case RX_states is
+                when IDLE =>
+                    RX_Active <= '0';
+                    Bit_IndexR <= 0;
+                    
+                    if rx = '0' then
+                        RX_states <= START;
+                    end if;
+            
+                when START =>
+                    RX_Active <= '1';
+                    delay_done <= '0';
+                    start_delay <= '1';
+                    
+                    RX_states <= DATA;
+            
+                when DATA =>
+                    for i in 0 to 7 loop
+                        RX_Data(Bit_IndexR) <= rx;               
+                        delay_done <= '0';
+                        start_delay <= '1';
+                    end loop;
+                    
+                    if Bit_IndexR < 7 then
+                        Bit_IndexR <= Bit_IndexR + 1;
+                    else
+                        RX_states <= STOP;
+                    end if;
+            
+                when STOP =>
+                    delay_done <= '0';
+                    start_delay <= '1';
+            
+                    if rx = '1' then
+                        RX_Byte <= RX_Data;
+                        RX_Done <= '1';
+                        RX_Active <= '0';
+                        RX_states <= IDLE;
+                    end if;
+
+            end case;
         end if;
+        
     end process;
-
-    tx <= tx_reg(0);
-
-    -- UART Receiver Process
-    process(clk, reset)
-    begin
-        if reset = '1' then
-            rx_reg <= (others => '1'); -- Initialize to all high (marking) state
-            rx_count <= 0;
-            rx_ready_flag <= '0';
-        elsif rising_edge(clk) then
-            if rx_count = 0 then
-                if rx = '0' then
-                    rx_reg <= rx & rx_reg(9 downto 1); -- Shift in received bit
-                    rx_count <= 1;
-                end if;
-            elsif rx_count > 0 and rx_count < 10 then
-                rx_reg <= rx & rx_reg(9 downto 1); -- Shift in received bit
-                rx_count <= rx_count + 1;
-            else
-                rx_data <= rx_reg(8 downto 1); -- Extract received data bits
-                rx_ready_flag <= '1'; -- Data is valid
-                rx_count <= 0;
-            end if;
-        end if;
-    end process;
-
-    data_out <= rx_data;
-    rx_ready <= rx_ready_flag;
 
 end Behavioral;

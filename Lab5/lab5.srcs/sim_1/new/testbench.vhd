@@ -17,8 +17,9 @@ architecture Behavioral of testbench is
       jc                : out std_logic_vector(7 downto 0);
       sysclk            : in  std_logic;
       led6_g            : out  std_logic;
-      btn0              : in  std_logic
-      );
+      btn0              : in  std_logic;
+      XTX               : out STD_LOGIC;
+      XRX               : in STD_LOGIC);
 
   end component;
   
@@ -56,7 +57,8 @@ architecture Behavioral of testbench is
   signal leds_tb           : std_logic_vector(3 downto 0);
   signal locked_tb         : std_logic;
   signal ssd_tb            : std_logic_vector(7 downto 0);
-  --uart stuff from lab 5
+  --uart stuff from lab 5 
+  --given UART
   signal TX_Byte_tb        : std_logic_vector(7 downto 0) := ("00000000");
   signal RX_Byte_tb        : std_logic_vector(7 downto 0);
   signal TX_DV_tb          : std_logic := '0';
@@ -64,8 +66,11 @@ architecture Behavioral of testbench is
   signal TX_Active_tb      : std_logic;
   signal TX_Serial_tb      : std_logic;
   signal TX_Done_tb        : std_logic;
+  --my own uart
+  signal TX_board_tb       : std_logic;
+  signal RX_board_tb       : std_logic := '0';
   
-  constant g_CLKS_PER_BIT: integer := 217;
+  constant g_CLKS_PER_BIT: integer := 1085;  --125MHz/115200
 begin
    
   clk_gen : process
@@ -76,11 +81,11 @@ begin
    
   reset_gen : process
   begin
-    reset_tb <= '0';
-    wait for 50 ns;
-    reset_tb <= '1';
-    wait for 100 ns;
-    reset_tb <= '0';
+      reset_tb <= '0';
+      wait for 5 ns;
+      reset_tb <= '1';
+      wait for 10 ns;
+      reset_tb <= '0';
     wait;
   end process;
 
@@ -91,7 +96,9 @@ begin
         jc              => ssd_tb,
         sysclk          => clk_tb,
         led6_g          => locked_tb,
-        btn0            => reset_tb
+        btn0            => reset_tb,
+        XTX             => TX_board_tb,
+        XRX             => RX_board_tb
       );
   
   U1: uart_tx_tb
@@ -114,14 +121,14 @@ begin
   port map (
     i_Clk       => clk_tb,
     i_RX_Serial => TX_Serial_tb,
-    o_RX_DV     => RX_DV_tb,
+    o_RX_DV     => RX_DV_tb, -- wait for RX_DV_tb
     o_RX_Byte   => RX_Byte_tb
   );
   
   test_process : process
   begin
     wait until rising_edge(locked_tb);
- 
+    -- lab 4 tests
     switches_tb <= "0011";
     
     wait for 200 ns;
@@ -133,23 +140,28 @@ begin
     switches_tb <= "0101";
     
     wait for 200ns;
+    RX_board_tb <= '1';
+    wait for 20ns;
+    RX_board_tb <= '0';
+    --lab 5 tests
     
     TX_Byte_tb <= "10101111"; --data sent. 0xAF in hex 
     TX_DV_tb <= '1'; -- data ready to send flag
-    
-    wait for 1000ns; --delay so data can transmit
+   
+    wait until rising_edge(TX_Active_tb); --wait until tx is not active
+  
     TX_DV_tb <= '0'; -- tx done
-    
-    wait for 20000ns; -- Wait for transmission to complete
+   
+    wait until rising_edge(RX_DV_tb); -- wait until rx data is valid
     
     RX_Byte_tb <= TX_Byte_tb; 
-
-    wait for 200ns;
-        
+    
+    wait for 1000ns;
+   
     if RX_Byte_tb /= TX_Byte_tb then
         report "RX does not match TX" severity error;
     else
-        report "RX does match TX";
+        report "RX does match TX" severity note;
     end if;
     
     finish;

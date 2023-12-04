@@ -88,6 +88,7 @@ set_property ip_output_repo c:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab7/lab7.
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+read_vhdl -library xil_defaultlib C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab7/lab7.srcs/sources_1/new/debounce.vhd
 read_vhdl -vhdl2008 -library xil_defaultlib {
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab7/lab7.srcs/sources_1/new/gpio.vhd
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab7/lab7.srcs/sources_1/new/gpio_bit.vhd

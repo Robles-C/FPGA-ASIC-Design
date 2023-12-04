@@ -25,20 +25,25 @@ entity gpio is
   generic (
     WIDTH : integer := 8);
   port (
-    oe    : in    std_logic_vector(WIDTH-1 downto 0);
-    inp   : in    std_logic_vector(WIDTH-1 downto 0);
-    outp  : out   std_logic_vector(WIDTH-1 downto 0);
-    bidir : inout std_logic_vector(WIDTH-1 downto 0)
+    oe        : in    std_logic_vector(WIDTH-1 downto 0);
+    inp       : in    std_logic_vector(WIDTH-1 downto 0);
+    outp      : out   std_logic_vector(WIDTH-1 downto 0);
+    bidir     : inout std_logic_vector(WIDTH-1 downto 0);
+    clk_in    : in  std_logic;
+    reset_in  : in  std_logic
     );
 end gpio;
 
 architecture Behavioral of gpio is
+  
   component gpio_bit is
     port(
       oe    : in    std_logic;
       inp   : in    std_logic;
       outp  : out   std_logic;
-      bidir : inout std_logic
+      bidir : inout std_logic;
+      clk_in    : in  std_logic;
+      reset_in  : in  std_logic
       );
   end component;
 
@@ -48,7 +53,7 @@ begin
   ------------------------------------------------------------------------------
   generate_gpio : for i in WIDTH-1 downto 0 generate
     generated_bit : gpio_bit
-      port map(oe(i), inp(i), outp(i), bidir(i));
+      port map(oe(i), inp(i), outp(i), bidir(i), clk_in, reset_in);
   end generate generate_gpio;
 
 end Behavioral;

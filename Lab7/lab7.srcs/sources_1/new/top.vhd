@@ -56,10 +56,12 @@ architecture rtl of top is
     generic (
       WIDTH : integer);
     port (
-      oe    : in    std_logic_vector(3 downto 0);
-      inp   : in    std_logic_vector(3 downto 0);
-      outp  : out   std_logic_vector(3 downto 0);
-      bidir : inout std_logic_vector(3 downto 0)
+      oe        : in    std_logic_vector(3 downto 0);
+      inp       : in    std_logic_vector(3 downto 0);
+      outp      : out   std_logic_vector(3 downto 0);
+      bidir     : inout std_logic_vector(3 downto 0);
+      clk_in    : in  std_logic;
+      reset_in  : in  std_logic
       );
   end component;
 
@@ -150,7 +152,9 @@ begin
       oe    => (others => '1'),         -- LEDS are outputs
       inp   => gpio_bus,
       outp  => open,
-      bidir => XLEDS
+      bidir => XLEDS,
+      clk_in => XCLK,
+      reset_in => XRESET
       );
 
   ------------------------------------------------------------------------------
@@ -164,7 +168,9 @@ begin
       oe    => (others => '0'),
       inp   => (others => '0'),
       outp  => gpio_bus,
-      bidir => XBTNS
+      bidir => XBTNS,
+      clk_in => XCLK,
+      reset_in => XRESET
       );
 
   ------------------------------------------------------------------------------

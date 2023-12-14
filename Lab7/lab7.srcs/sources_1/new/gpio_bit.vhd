@@ -56,8 +56,5 @@ begin
   output  <= bidir when oe = '0' else 'Z';
     
   outp <= btn_result;
-debounce_instance: debounce
-    GENERIC MAP(clk_freq => 125_000_000, stable_time => 1)
-    PORT MAP(clk => clk_in, reset_n => reset_in, button => output, result => btn_result);
 
 end rtl;

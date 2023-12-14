@@ -95,7 +95,6 @@ pulse_inst_2: single_pulse_detector generic map(detect_type => "01")
                                     port map(clk => clk, rst => rst, input_signal => btn_db(2), output_pulse => btn_pulse(2));
 pulse_inst_3: single_pulse_detector generic map(detect_type => "01")
                                     port map(clk => clk, rst => rst, input_signal => btn_db(3), output_pulse => btn_pulse(3));
-
 process(clk, rst)
 begin
     if rst = '1' then

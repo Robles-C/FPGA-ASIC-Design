@@ -2,8 +2,8 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Sun Dec 10 15:55:29 2023
-# Process ID: 25404
+# Start of session at: Sun Dec 10 18:47:24 2023
+# Process ID: 33536
 # Current directory: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.runs/impl_1
 # Command line: vivado.exe -log simon_game_top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source simon_game_top.tcl -notrace
 # Log file: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.runs/impl_1/simon_game_top.vdi

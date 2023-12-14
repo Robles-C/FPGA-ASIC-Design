@@ -70,6 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 3
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7z010clg400-1
 
@@ -105,6 +107,8 @@ read_xdc C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.src
 set_property used_in_implementation false [get_files C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.srcs/constrs_1/new/Zybo-Z7-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.srcs/utils_1/imports/synth_1/simon_game_top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

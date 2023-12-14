@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Sun Nov 19 21:43:14 2023
+| Date         : Tue Dec 12 21:26:59 2023
 | Host         : BOOK-22PN8T4506 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,28 +23,16 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 15
-+-----------+------------------+----------------------------------------------------+------------+
-| Rule      | Severity         | Description                                        | Violations |
-+-----------+------------------+----------------------------------------------------+------------+
-| TIMING-4  | Critical Warning | Invalid primary clock redefinition on a clock tree | 1          |
-| TIMING-27 | Critical Warning | Invalid primary clock on hierarchical pin          | 1          |
-| HPDR-1    | Warning          | Port pin direction inconsistency                   | 4          |
-| TIMING-18 | Warning          | Missing input or output delay                      | 9          |
-+-----------+------------------+----------------------------------------------------+------------+
+             Violations found: 5
++-----------+----------+------------------------------------------------------------------+------------+
+| Rule      | Severity | Description                                                      | Violations |
++-----------+----------+------------------------------------------------------------------+------------+
+| HPDR-1    | Warning  | Port pin direction inconsistency                                 | 4          |
+| TIMING-56 | Warning  | Missing logically or physically excluded clock groups constraint | 1          |
++-----------+----------+------------------------------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
-TIMING-4#1 Critical Warning
-Invalid primary clock redefinition on a clock tree  
-Invalid clock redefinition on a clock tree. The primary clock sys_con/clk_wizard/inst/clk_in1 is defined downstream of clock sys_clk_pin and overrides its insertion delay and/or waveform definition
-Related violations: <none>
-
-TIMING-27#1 Critical Warning
-Invalid primary clock on hierarchical pin  
-A primary clock sys_con/clk_wizard/inst/clk_in1 is created on an inappropriate internal pin sys_con/clk_wizard/inst/clk_in1. It is not recommended to create a primary clock on a hierarchical pin when its driver pin has a fanout connected to multiple clock pins
-Related violations: <none>
-
 HPDR-1#1 Warning
 Port pin direction inconsistency  
 Hierarchical port(pin) XLEDS[0] direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (XLEDS[0]) connected to this Port, but both were not found.
@@ -65,49 +53,9 @@ Port pin direction inconsistency
 Hierarchical port(pin) XLEDS[3] direction INOUT is not consistent with the directions of the cell pins/ports found at that level of the netlist hierarchy. Please review the design and consider changing the port(pin) direction. Both drivers and loads were expected for the net (XLEDS[3]) connected to this Port, but both were not found.
 Related violations: <none>
 
-TIMING-18#1 Warning
-Missing input or output delay  
-An input delay is missing on XBTNS[0] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#2 Warning
-Missing input or output delay  
-An input delay is missing on XBTNS[1] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#3 Warning
-Missing input or output delay  
-An input delay is missing on XBTNS[2] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#4 Warning
-Missing input or output delay  
-An input delay is missing on XBTNS[3] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#5 Warning
-Missing input or output delay  
-An input delay is missing on XLEDS[0] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#6 Warning
-Missing input or output delay  
-An input delay is missing on XLEDS[1] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#7 Warning
-Missing input or output delay  
-An input delay is missing on XLEDS[2] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#8 Warning
-Missing input or output delay  
-An input delay is missing on XLEDS[3] relative to clock(s) sys_clk_pin
-Related violations: <none>
-
-TIMING-18#9 Warning
-Missing input or output delay  
-An input delay is missing on XRESET relative to clock(s) sys_clk_pin
+TIMING-56#1 Warning
+Missing logically or physically excluded clock groups constraint  
+Multiple clocks are user generated or auto-derived on the source pin sys_con/clk_wizard/inst/mmcm_adv_inst/CLKFBOUT but are not logically or physically exclusive with respect to one another. To have the static timing analysis match the behavior in hardware, there cannot be multiple clocks generated on the same pin and when such situation occurs, the clocks should be defined as physically or logically exclusive. The list of clocks generated on the source pin is: clkfbout_clk_wiz_0, clkfbout_clk_wiz_0_1
 Related violations: <none>
 
 

@@ -22,7 +22,7 @@
 --     Initial Public Release
 --
 --------------------------------------------------------------------------------
-
+--From keypad lab, 3rd party code
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 

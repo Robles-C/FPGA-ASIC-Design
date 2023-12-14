@@ -64,6 +64,18 @@ architecture rtl of top is
       reset_in  : in  std_logic
       );
   end component;
+  component gpiob is
+    generic (
+      WIDTH : integer);
+    port (
+      oe        : in    std_logic_vector(3 downto 0);
+      inp       : in    std_logic_vector(3 downto 0);
+      outp      : out   std_logic_vector(3 downto 0);
+      bidir     : inout std_logic_vector(3 downto 0);
+      clk_in    : in  std_logic;
+      reset_in  : in  std_logic
+      );
+  end component;
 
 --  component seven_segments is
 
@@ -162,7 +174,7 @@ begin
   -- Read the state of the buttons on the board
   --
   ------------------------------------------------------------------------------
-  BUTTONS : gpio
+  BUTTONS : gpiob
     generic map(WIDTH => 4)
     port map(
       oe    => (others => '0'),

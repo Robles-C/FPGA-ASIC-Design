@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Sun Dec 10 15:55:56 2023
+| Date         : Sun Dec 10 18:48:20 2023
 | Host         : BOOK-22PN8T4506 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file simon_game_top_control_sets_placed.rpt
 | Design       : simon_game_top
@@ -73,48 +73,48 @@ Table of Contents
 +----------------+--------------------------------------------------------+---------------------+------------------+----------------+--------------+
 |  Clock Signal  |                      Enable Signal                     |   Set/Reset Signal  | Slice Load Count | Bel Load Count | Bels / Slice |
 +----------------+--------------------------------------------------------+---------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG | debounce_inst_3/sig_i_1__2_n_0                         | debounce_inst_2/rst |                1 |              1 |         1.00 |
-|  clk_IBUF_BUFG | debounce_inst_2/sig_i_1__1_n_0                         | debounce_inst_2/rst |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG | debounce_inst_0/sig0                                   | debounce_inst_2/rst |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG | debounce_inst_1/sig_i_1__0_n_0                         | debounce_inst_2/rst |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | debounce_inst_3/sig_i_1__2_n_0                         | debounce_inst_2/rst |                1 |              1 |         1.00 |
+|  clk_IBUF_BUFG | debounce_inst_2/sig_i_1__1_n_0                         | debounce_inst_2/rst |                1 |              1 |         1.00 |
 |  clk_IBUF_BUFG | rgb_reg[2]_i_1_n_0                                     | debounce_inst_2/rst |                3 |              3 |         1.00 |
+|  clk_IBUF_BUFG | main_array_reg[14][3]_i_1_n_0                          | debounce_inst_2/rst |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | r_data_reg[3]_i_1_n_0                                  | debounce_inst_2/rst |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | main_array_reg[15][3]_i_1_n_0                          | debounce_inst_2/rst |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | main_array_reg[11][3]_i_1_n_0                          | debounce_inst_2/rst |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | main_array_reg[5][3]_i_1_n_0                           | debounce_inst_2/rst |                4 |              4 |         1.00 |
 |  clk_IBUF_BUFG | main_array_reg[9][3]_i_1_n_0                           | debounce_inst_2/rst |                4 |              4 |         1.00 |
 |  clk_IBUF_BUFG | main_array_reg[7][3]_i_1_n_0                           | debounce_inst_2/rst |                3 |              4 |         1.33 |
-|  clk_IBUF_BUFG | main_array_reg[12][3]_i_1_n_0                          | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | main_array_reg[5][3]_i_1_n_0                           | debounce_inst_2/rst |                4 |              4 |         1.00 |
-|  clk_IBUF_BUFG | main_array_reg[8][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | main_array_reg[0][3]_i_1_n_0                           | debounce_inst_2/rst |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | main_array_reg[3][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | main_array_reg[15][3]_i_1_n_0                          | debounce_inst_2/rst |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | main_array_reg[1][3]_i_1_n_0                           | debounce_inst_2/rst |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | main_array_reg[10][3]_i_1_n_0                          | debounce_inst_2/rst |                3 |              4 |         1.33 |
-|  clk_IBUF_BUFG | main_array_reg[4][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | main_array_reg[6][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | main_array_reg[14][3]_i_1_n_0                          | debounce_inst_2/rst |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | main_array_reg[2][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | r_data_reg[3]_i_1_n_0                                  | debounce_inst_2/rst |                2 |              4 |         2.00 |
 |  clk_IBUF_BUFG | main_array_reg[13][3]_i_1_n_0                          | debounce_inst_2/rst |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | main_array_reg[3][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | main_array_reg[6][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | main_array_reg[8][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | main_array_reg[4][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | main_array_reg[12][3]_i_1_n_0                          | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | main_array_reg[0][3]_i_1_n_0                           | debounce_inst_2/rst |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | main_array_reg[10][3]_i_1_n_0                          | debounce_inst_2/rst |                3 |              4 |         1.33 |
+|  clk_IBUF_BUFG | main_array_reg[2][3]_i_1_n_0                           | debounce_inst_2/rst |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/E[0]                                      | debounce_inst_2/rst |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[0][0]    | debounce_inst_2/rst |                2 |              4 |         2.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2][0]    | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/mem_index_reg[2]_0[0]                     | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_4[0]  | debounce_inst_2/rst |                2 |              4 |         2.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_0[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_5[0]  | debounce_inst_2/rst |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_4[0]  | debounce_inst_2/rst |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_8[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/mem_index_reg[2][0]                       | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/mem_index_reg[2]_0[0]                     | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_3[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/mem_index_reg[0][0]                       | debounce_inst_2/rst |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_2[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_1[0]  | debounce_inst_2/rst |                2 |              4 |         2.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_7[0]  | debounce_inst_2/rst |                3 |              4 |         1.33 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_9[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_2[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/mem_index_reg[2][0]                       | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_3[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_5[0]  | debounce_inst_2/rst |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/mem_index_reg[0][0]                       | debounce_inst_2/rst |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_6[0]  | debounce_inst_2/rst |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_8[0]  | debounce_inst_2/rst |                1 |              4 |         4.00 |
 |  clk_IBUF_BUFG | pulse_inst_3/mem_index_reg[3][0]                       | debounce_inst_2/rst |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG | level[0]_i_1_n_0                                       | debounce_inst_2/rst |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG | disp_counter[31]_i_1_n_0                               | debounce_inst_2/rst |               13 |             32 |         2.46 |
 |  clk_IBUF_BUFG | pulse_inst_3/FSM_sequential_current_state_reg[2]_10[0] | debounce_inst_2/rst |               12 |             32 |         2.67 |
+|  clk_IBUF_BUFG | level[0]_i_1_n_0                                       | debounce_inst_2/rst |                8 |             32 |         4.00 |
 |  clk_IBUF_BUFG |                                                        | debounce_inst_2/rst |               33 |            103 |         3.12 |
 +----------------+--------------------------------------------------------+---------------------+------------------+----------------+--------------+
 

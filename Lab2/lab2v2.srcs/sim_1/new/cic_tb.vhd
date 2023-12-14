@@ -35,18 +35,16 @@ begin
     --create clk
     process
     begin
-        loop
-            clk_tb <= '0';
-            wait for 8ns;
-            clk_tb <= '1';
-            wait for 8ns;
-        end loop;
+        clk_tb <= '0';
+        wait for 8ns;
+        clk_tb <= '1';
+        wait for 8ns;
     end process;
 
     -- Input data reading
     process
         --file in_file: text open read_mode is "..\..\..\..\lab2v2.srcs\sim_1\new\16MHz.txt";
-        file in_file: text open read_mode is "\16MHz.txt";
+        file in_file: text open read_mode is "\24MHz.txt";
         --file in_file: text open read_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\24MHz.txt";
         
         variable in_line: line;
@@ -64,10 +62,10 @@ begin
         wait;
     end process;
 
-    -- Output data writing
+    -- Output data write
     process(clk_tb)
         --file out_file: text open write_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\O8MHz.txt";
-        file out_file: text open read_mode is "\O16MHz.txt";
+        file out_file: text open read_mode is "\O24MHz.txt";
         --file out_file: text open write_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\O24MHz.txt";
         variable outline: line;
     begin
@@ -84,15 +82,14 @@ begin
         ce_tb <= '1';
         wait for 8ns;
         rst_tb <= '0';
-        wait for 100 us; -- Example time after which the simulation will end
+        wait for 100 us;
         wait;
     end process;
 
-    -- Decimated Clock Enable
     process
     begin
         ce_r_tb <= '0';
-        wait for 70ns; -- decimated by factor of 5
+        wait for 70ns;
         ce_r_tb <= '1';
         wait for 8ns;
     end process;

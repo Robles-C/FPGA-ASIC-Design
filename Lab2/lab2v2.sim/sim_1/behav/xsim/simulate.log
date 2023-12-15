@@ -1,10 +1,10 @@
 Warning: File \24MHz.txt could not be opened
-on HDL file C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd line 47
+on HDL file C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd line 45
 Warning: File \O24MHz.txt could not be opened
-on HDL file C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd line 68
+on HDL file C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd line 65
 Time resolution is 1 ps
 ERROR: File \O24MHz.txt could not be opened.
-Time: 8 ns  Iteration: 1  Process: /cic_tb/line__66
+Time: 8 ns  Iteration: 1  Process: /cic_tb/line__63
   File: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd
 
-HDL Line: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd:74
+HDL Line: C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab2/lab2v2.srcs/sim_1/new/cic_tb.vhd:71

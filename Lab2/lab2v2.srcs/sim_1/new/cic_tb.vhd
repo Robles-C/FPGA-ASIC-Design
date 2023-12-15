@@ -32,7 +32,6 @@ begin
                        rst => rst_tb, 
                        d => d_tb, 
                        q => q_tb);
-    --create clk
     process
     begin
         clk_tb <= '0';
@@ -41,7 +40,6 @@ begin
         wait for 8ns;
     end process;
 
-    -- Input data reading
     process
         --file in_file: text open read_mode is "..\..\..\..\lab2v2.srcs\sim_1\new\16MHz.txt";
         file in_file: text open read_mode is "\24MHz.txt";
@@ -62,10 +60,9 @@ begin
         wait;
     end process;
 
-    -- Output data write
     process(clk_tb)
         --file out_file: text open write_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\O8MHz.txt";
-        file out_file: text open read_mode is "\O24MHz.txt";
+        file out_file: text open write_mode is "\O24MHz.txt";
         --file out_file: text open write_mode is "..\..\..\..\lab2v2.sim\sim_1\behav\xsim\O24MHz.txt";
         variable outline: line;
     begin
@@ -75,7 +72,6 @@ begin
         end if;
     end process;
 
-    -- Reset and Clock Enable
     process
     begin
         rst_tb <= '1';
@@ -89,7 +85,7 @@ begin
     process
     begin
         ce_r_tb <= '0';
-        wait for 70ns;
+        wait for 40ns;
         ce_r_tb <= '1';
         wait for 8ns;
     end process;

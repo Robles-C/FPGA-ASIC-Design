@@ -1,0 +1,322 @@
+
+*** Running vivado
+    with args -log top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
+
+
+
+****** Vivado v2022.1 (64-bit)
+  **** SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+  **** IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source top.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/utils_1/imports/synth_1/simon_game_top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/utils_1/imports/synth_1/simon_game_top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top -part xc7z010clg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
+INFO: [Device 21-403] Loading part xc7z010clg400-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 13148
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:04 . Memory (MB): peak = 1636.629 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'top' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:19]
+INFO: [Synth 8-3491] module 'clk_wiz_0' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.runs/synth_1/.Xil/Vivado-10632-BOOK-22PN8T4506/realtime/clk_wiz_0_stub.vhdl:5' bound to instance 'clk_manager' of component 'clk_wiz_0' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:127]
+INFO: [Synth 8-638] synthesizing module 'clk_wiz_0' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.runs/synth_1/.Xil/Vivado-10632-BOOK-22PN8T4506/realtime/clk_wiz_0_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'debounce' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/debounce.vhd:5' bound to instance 'debounce_inst_1' of component 'debounce' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:136]
+INFO: [Synth 8-638] synthesizing module 'debounce' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/debounce.vhd:19]
+	Parameter clk_freq bound to: 125000000 - type: integer 
+	Parameter stable_time bound to: 10 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'debounce' (0#1) [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/debounce.vhd:19]
+INFO: [Synth 8-3491] module 'debounce' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/debounce.vhd:5' bound to instance 'debounce_inst_2' of component 'debounce' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:137]
+INFO: [Synth 8-3491] module 'debounce' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/debounce.vhd:5' bound to instance 'debounce_inst_3' of component 'debounce' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:138]
+INFO: [Synth 8-3491] module 'debounce' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/debounce.vhd:5' bound to instance 'debounce_inst_4' of component 'debounce' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:139]
+INFO: [Synth 8-3491] module 'sevenSeg' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/sevenSeg.vhd:4' bound to instance 'sevenSegInstance' of component 'sevenSeg' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:141]
+INFO: [Synth 8-638] synthesizing module 'sevenSeg' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/sevenSeg.vhd:10]
+INFO: [Synth 8-256] done synthesizing module 'sevenSeg' (0#1) [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/sevenSeg.vhd:10]
+INFO: [Synth 8-3491] module 'UART' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart.vhd:29' bound to instance 'uart_inst' of component 'UART' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:148]
+INFO: [Synth 8-638] synthesizing module 'UART' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart.vhd:46]
+INFO: [Synth 8-3491] module 'UART_tx' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_tx.vhd:27' bound to instance 'transmitter' of component 'UART_tx' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart.vhd:71]
+INFO: [Synth 8-638] synthesizing module 'UART_tx' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_tx.vhd:42]
+INFO: [Synth 8-226] default block is never used [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_tx.vhd:140]
+INFO: [Synth 8-256] done synthesizing module 'UART_tx' (0#1) [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_tx.vhd:42]
+INFO: [Synth 8-3491] module 'UART_rx' declared at 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_rx.vhd:29' bound to instance 'receiver' of component 'UART_rx' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart.vhd:81]
+INFO: [Synth 8-638] synthesizing module 'UART_rx' [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_rx.vhd:44]
+INFO: [Synth 8-226] default block is never used [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_rx.vhd:99]
+INFO: [Synth 8-256] done synthesizing module 'UART_rx' (0#1) [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart_rx.vhd:44]
+INFO: [Synth 8-256] done synthesizing module 'UART' (0#1) [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/uart.vhd:46]
+INFO: [Synth 8-256] done synthesizing module 'top' (0#1) [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:19]
+WARNING: [Synth 8-6014] Unused sequential element SSDdelay_done_reg was removed.  [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:183]
+WARNING: [Synth 8-6014] Unused sequential element start_transmit_reg was removed.  [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/sources_1/new/top.vhd:165]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1636.629 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1636.629 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:01 ; elapsed = 00:00:05 . Memory (MB): peak = 1636.629 ; gain = 0.000
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1636.629 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_manager'
+Finished Parsing XDC File [c:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clk_manager'
+Parsing XDC File [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/constrs_1/new/Zybo-Z7-Master.xdc]
+Finished Parsing XDC File [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/constrs_1/new/Zybo-Z7-Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.srcs/constrs_1/new/Zybo-Z7-Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1705.348 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1705.348 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z010clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for CLKX. (constraint file  c:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for CLKX. (constraint file  c:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc, line 4).
+Applied set_property KEEP_HIERARCHY = SOFT for clk_manager. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'tx_state_reg' in module 'UART_tx'
+INFO: [Synth 8-802] inferred FSM for state register 'rx_state_reg' in module 'UART_rx'
+INFO: [Synth 8-802] inferred FSM for state register 'user_reg' in module 'top'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                             0001 |                               00
+                   start |                             0010 |                               01
+                    data |                             0100 |                               10
+                    stop |                             1000 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'tx_state_reg' using encoding 'one-hot' in module 'UART_tx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                               00 |                               00
+                   start |                               01 |                               01
+                    data |                               10 |                               10
+                    stop |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rx_state_reg' using encoding 'sequential' in module 'UART_rx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                               00 |                               00
+                   check |                               01 |                               01
+                 correct |                               10 |                               10
+                delaying |                               11 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'user_reg' using encoding 'sequential' in module 'top'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:11 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input   32 Bit       Adders := 2     
+	   2 Input   31 Bit       Adders := 2     
+	   2 Input   26 Bit       Adders := 1     
+	   2 Input   13 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 6     
+	               31 Bit    Registers := 2     
+	               11 Bit    Registers := 1     
+	                8 Bit    Registers := 4     
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 18    
++---Muxes : 
+	   4 Input   32 Bit        Muxes := 2     
+	   2 Input   32 Bit        Muxes := 1     
+	   2 Input   31 Bit        Muxes := 2     
+	   2 Input   26 Bit        Muxes := 1     
+	   2 Input   13 Bit        Muxes := 2     
+	   2 Input   11 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 2     
+	   4 Input    8 Bit        Muxes := 2     
+	   2 Input    4 Bit        Muxes := 4     
+	   4 Input    4 Bit        Muxes := 1     
+	   4 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   4 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 4     
+	   3 Input    1 Bit        Muxes := 5     
+	   2 Input    1 Bit        Muxes := 21    
+	   4 Input    1 Bit        Muxes := 22    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 80 (col length:40)
+BRAMs: 120 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3332] Sequential element (uart_inst/receiver/FSM_sequential_rx_state_reg[1]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (uart_inst/receiver/FSM_sequential_rx_state_reg[0]) is unused and will be removed from module top.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:14 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:03 ; elapsed = 00:00:18 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:03 ; elapsed = 00:00:19 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:03 ; elapsed = 00:00:20 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+---------------+------+
+|      |Cell           |Count |
++------+---------------+------+
+|1     |clk_wiz_0_bbox |     1|
+|2     |CARRY4         |    98|
+|3     |LUT1           |   124|
+|4     |LUT2           |   232|
+|5     |LUT3           |    85|
+|6     |LUT4           |    33|
+|7     |LUT5           |    61|
+|8     |LUT6           |    72|
+|9     |FDCE           |   301|
+|10    |FDPE           |     5|
+|11    |FDRE           |    16|
+|12    |FDSE           |     9|
+|13    |IBUF           |     5|
+|14    |OBUF           |    13|
++------+---------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:03 ; elapsed = 00:00:21 . Memory (MB): peak = 1705.348 ; gain = 0.000
+Synthesis Optimization Complete : Time (s): cpu = 00:00:04 ; elapsed = 00:00:23 . Memory (MB): peak = 1705.348 ; gain = 68.719
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1706.941 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 98 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-140] Inserted 1 IBUFs to IO ports without IO buffers.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1710.594 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 81ac3a9b
+INFO: [Common 17-83] Releasing license: Synthesis
+52 Infos, 5 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:27 . Memory (MB): peak = 1710.594 ; gain = 73.965
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Cristian/ECE524/FPGA-ASIC-Design/Lab8/lab8.runs/synth_1/top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Dec 15 18:49:19 2023...

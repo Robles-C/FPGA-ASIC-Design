@@ -185,7 +185,7 @@ begin
         temp <= 0;
         target_num <= 0;
         guess <= 0;
-        lastGuess <= 104;
+        lastGuess <= 1004;
 
     elsif rising_edge(clk_125) then
         case state is

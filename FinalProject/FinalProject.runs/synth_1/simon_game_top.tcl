@@ -91,6 +91,7 @@ OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.srcs/sources_1/new/debounce.vhd
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.srcs/sources_1/new/rand_gen.vhd
+  C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.srcs/sources_1/new/sevenSeg.vhd
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.srcs/sources_1/new/single_pulse_detector.vhd
   C:/Users/Cristian/ECE524/FPGA-ASIC-Design/FinalProject/FinalProject.srcs/sources_1/new/simon_game_top.vhd
 }

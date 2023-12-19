@@ -11,10 +11,22 @@ entity simon_game_top is
            led : out STD_LOGIC_VECTOR (3 downto 0);
            led_r : out STD_LOGIC;
            led_g : out STD_LOGIC;
-           led_b : out STD_LOGIC);
+           led_b : out STD_LOGIC;
+           jc : out  STD_LOGIC_VECTOR(7 downto 0);
+           sw : in STD_LOGIC);
 end simon_game_top;
 
 architecture Behavioral of simon_game_top is
+
+signal segsel :std_logic := '0'; 
+signal currSeg1 : integer := 0;
+signal currSeg2 : integer := 0;
+signal segInput : integer; -- input to ssd
+
+type SSDstate is (DELAYING, SWITCHING); -- states of seven segment display
+signal state : SSDstate := DELAYING; -- initial state
+
+constant ssd_delay : natural := 5000; -- delay amount for switching ssd
 
 constant ADDR_WIDTH: integer := 4;
 constant DATA_WIDTH: integer := 4;
@@ -37,6 +49,10 @@ signal current_state: state_type;
 type mem_2d_type is array (0 to 2**ADDR_WIDTH-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
 signal main_array_reg: mem_2d_type;
 signal user_array_reg: mem_2d_type;
+
+
+signal SSDcounter : natural := 0; -- counting variable for delay
+signal SSDdelay_done : std_logic := '0'; -- delay flag for switch
 
 component debounce is
     generic
@@ -75,9 +91,15 @@ component rand_gen is
     );
 end component rand_gen;
 
+component sevenSeg is
+        Port ( segSel : in STD_LOGIC;
+               segIn  : integer; 
+               segOut : out  STD_LOGIC_VECTOR(7 downto 0));
+    end component;
+
 begin
 
-rst <= btn(0) AND btn(3);
+rst <= sw;
 
 rand_gen_int: rand_gen generic map(output_size => DATA_WIDTH)
               port map(clk => clk, rst => rst, seed => seed, output => pattern);
@@ -95,10 +117,17 @@ pulse_inst_2: single_pulse_detector generic map(detect_type => "01")
                                     port map(clk => clk, rst => rst, input_signal => btn_db(2), output_pulse => btn_pulse(2));
 pulse_inst_3: single_pulse_detector generic map(detect_type => "01")
                                     port map(clk => clk, rst => rst, input_signal => btn_db(3), output_pulse => btn_pulse(3));
+
+ sevenSegInstance : sevenSeg
+    port map (
+        segSel => segsel,
+        segIn => segInput,
+        segOut => jc
+    );
+
 process(clk, rst)
 begin
     if rst = '1' then
-     --reset regs
         current_state <= IDLE;
         rgb_reg <= (others => '0');
         level <= 0;
@@ -107,9 +136,10 @@ begin
         led_reg <= (others => '0');
         mem_index <= 0;
         disp_counter <= 0;
+        currSeg1 <= 0;
+        currSeg2 <= 0;
         r_data_reg <= (others => '0');
     elsif rising_edge(clk) then
-      --sm
       if current_state = IDLE then
           current_state <= SEQ_GEN;
       elsif current_state = SEQ_GEN then        
@@ -188,7 +218,7 @@ begin
              end if;
           end if;
       elsif current_state = CORR_INP then
-          rgb_reg <= "010";         
+          rgb_reg <= "010";      
           if disp_counter < INPUT_FREQ-1 then
               disp_counter <= disp_counter+1;
           else
@@ -196,6 +226,7 @@ begin
           end if;
           if disp_counter = INPUT_FREQ-1 then
               current_state <= SEQ_GEN;
+              currSeg2 <= currSeg2 + 1;   
           end if;
       elsif current_state = INCORR_INP then
       
@@ -221,6 +252,33 @@ begin
       else
           current_state <= GAME_OVER;
       end if;
+    end if;
+end process;
+
+process (clk)    
+  begin
+    if rising_edge(clk) then
+        case state is
+            when DELAYING => -- delay state for switching between ssd 1 and ssd 2
+                if SSDcounter < ssd_delay then
+                    SSDcounter <= SSDcounter + 1;
+                else
+                    SSDdelay_done <= '1';
+                    SSDcounter <= 0;
+                    state <= SWITCHING;
+                end if;
+            
+            when SWITCHING => -- actual switch
+                SSDdelay_done <= '0'; -- update flag
+                segsel <= not segsel; -- switch to other ssd
+                SSDcounter <= 0;
+                if segsel = '1' then 
+                    segInput <= currSeg2; -- if segment 1 is selected the ipnut is curseg2
+                elsif segsel = '0' then
+                    segInput <= currSeg1; -- if segment 0 is selected the ipnut is curseg1
+                end if;             
+                state <= DELAYING; -- return to delay state
+        end case;
     end if;
 end process;
 
